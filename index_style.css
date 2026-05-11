@@ -19,12 +19,14 @@ body {
 
 /* 3. Định dạng thanh Menu (Navbar) */
 .navbar {
-    display: flex;
-    justify-content: space-between; /* Đẩy Logo sang trái, Menu sang phải */
+   display: flex;
+    justify-content: space-between;
     align-items: center;
     padding: 20px 10%;
-    background-color: #1f1f1f; /* Màu xám đậm cho thanh menu */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Tạo bóng đổ cho xịn */
+    background-color: #1f1f1f;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    position: relative; /* THÊM DÒNG NÀY */
+    z-index: 100; /* Đảm bảo menu luôn nằm trên cùng */
 }
 
 .logo {
@@ -54,4 +56,43 @@ body {
 .nav-links a:hover {
     color: #00adb5;
     text-transform: uppercase; /* Chữ in hoa khi di chuột vào cho cá tính */
+}
+/* Style cơ bản cho mobile menu (ẩn đi trên desktop) */
+.menu-toggle {
+    display: none; /* Mặc định ẩn trên máy tính */
+    cursor: pointer;
+    flex-direction: column;
+}
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #00adb5; /* Màu xanh giống logo của bạn */
+    margin: 4px 0;
+    transition: 0.4s;
+}
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        display: flex; /* Hiện nút 3 gạch khi dùng điện thoại */
+    }
+
+    .nav-links {
+        display: none; /* Ẩn danh sách link đi */
+        position: absolute;
+        right: 0;
+        top: 70px; /* Điều chỉnh tùy theo độ cao navbar của bạn */
+        background-color: #1f1f1f;
+        flex-direction: column; /* Xếp các mục theo chiều dọc */
+        width: 100%;
+        text-align: center;
+        box-shadow: 0 10px 10px rgba(0,0,0,0.5);
+    }
+
+    /* Khi nhấn vào nút (thêm class active bằng JS), menu sẽ hiện ra */
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        padding: 20px 0; /* Tạo khoảng cách cho các mục menu trên mobile */
+    }
 }
